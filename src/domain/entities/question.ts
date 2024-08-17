@@ -1,21 +1,21 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 
 interface QuestionProps {
-  title: string;
-  content: string;
-  authorId: string;
+	title: string;
+	content: string;
+	authorId: string;
 }
 
 export class Question {
-  public id: string;
-  public title: string;
-  public content: string;
-  public authorId: string;
+	public id: string;
+	public title: string;
+	public content: string;
+	public authorId: string;
 
-  constructor({ authorId, content, title }: QuestionProps, id?: string) {
-    this.title = title;
-    this.content = content;
-    this.id = id ?? randomUUID();
-    this.authorId = authorId;
-  }
+	constructor({ authorId, content, title }: QuestionProps, id?: string) {
+		this.title = title;
+		this.content = content;
+		this.id = id ?? randomUUID();
+		this.authorId = authorId;
+	}
 }
