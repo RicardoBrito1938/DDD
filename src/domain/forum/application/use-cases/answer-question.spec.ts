@@ -1,5 +1,5 @@
 import type { Answer } from "../../enterprise/entities/answer";
-import type { AnswersRepository } from "../repositories/asnwers-repository";
+import type { AnswersRepository } from "../repositories/answers-repository";
 import { AnswerQuestionUseCase } from "./answer-question";
 
 const fakeAnswersRepository: AnswersRepository = {
