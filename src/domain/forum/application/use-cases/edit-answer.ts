@@ -1,3 +1,4 @@
+import type { Answer } from "../../enterprise/entities/answer";
 import type { AnswersRepository } from "../repositories/answers-repository";
 
 interface EditAnswerUseCaseRequest {
@@ -6,8 +7,9 @@ interface EditAnswerUseCaseRequest {
 	content: string;
 }
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
-type EditAnswerUseCaseResponse = {};
+type EditAnswerUseCaseResponse = {
+	answer: Answer;
+};
 
 export class EditAnswerUseCase {
 	constructor(private answersRepository: AnswersRepository) {}
@@ -31,6 +33,8 @@ export class EditAnswerUseCase {
 
 		await this.answersRepository.update(answer);
 
-		return {};
+		return {
+			answer,
+		};
 	}
 }

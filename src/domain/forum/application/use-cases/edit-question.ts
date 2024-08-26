@@ -1,3 +1,4 @@
+import type { Question } from "../../enterprise/entities/question";
 import type { QuestionsRepository } from "../repositories/questions-repository";
 
 interface EditQuestionUseCaseRequest {
@@ -7,8 +8,9 @@ interface EditQuestionUseCaseRequest {
 	content: string;
 }
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
-type EditQuestionUseCaseResponse = {};
+type EditQuestionUseCaseResponse = {
+	question: Question;
+};
 
 export class EditQuestionUseCase {
 	constructor(private questionsRepository: QuestionsRepository) {}
@@ -34,6 +36,8 @@ export class EditQuestionUseCase {
 
 		await this.questionsRepository.update(question);
 
-		return {};
+		return {
+			question,
+		};
 	}
 }
