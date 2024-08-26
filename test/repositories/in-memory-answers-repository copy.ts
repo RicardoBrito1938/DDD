@@ -20,4 +20,10 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 		);
 		return Promise.resolve(answer || null);
 	}
+
+	async update(answer: Answer) {
+		const itemIndex = this.items.findIndex((item) => item.id === answer.id);
+
+		this.items[itemIndex] = answer;
+	}
 }
