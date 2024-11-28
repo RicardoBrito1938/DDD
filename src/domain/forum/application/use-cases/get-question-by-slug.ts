@@ -1,6 +1,5 @@
 import type { Question } from "@/domain/forum/enterprise/entities/question";
 import type { QuestionsRepository } from "../repositories/questions-repository";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 
 interface GetQuestionBySlugUseCaseRequest {
 	slug: string;

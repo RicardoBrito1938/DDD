@@ -28,6 +28,13 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 		return Promise.resolve(question || null);
 	}
 
+	async findManyRecent({ page }: { page: number }): Promise<Question[]> {
+		const questions = this.items
+			.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+			.slice((page - 1) * 20, page * 20);
+		return Promise.resolve(questions);
+	}
+
 	async update(question: Question) {
 		const itemIndex = this.items.findIndex((item) => item.id === question.id);
 

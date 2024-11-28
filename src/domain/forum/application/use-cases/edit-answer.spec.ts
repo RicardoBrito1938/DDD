@@ -1,4 +1,4 @@
-import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository copy";
+import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository";
 import { EditAnswerUseCase } from "./edit-answer";
 
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";

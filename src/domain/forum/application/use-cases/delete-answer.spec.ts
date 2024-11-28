@@ -1,7 +1,7 @@
 import { DeleteAnswerUseCase } from "./delete-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { makeAnswer } from "test/factories/make-annswer";
-import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository copy";
+import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: DeleteAnswerUseCase;

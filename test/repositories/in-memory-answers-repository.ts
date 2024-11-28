@@ -21,6 +21,16 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 		return Promise.resolve(answer || null);
 	}
 
+	async findManyByQuestionId(
+		questionId: string,
+		params: { page: number },
+	): Promise<Answer[]> {
+		const answers = this.items
+			.filter((item) => item.questionId.toString() === questionId)
+			.slice((params.page - 1) * 20, params.page * 20);
+		return Promise.resolve(answers);
+	}
+
 	async update(answer: Answer) {
 		const itemIndex = this.items.findIndex((item) => item.id === answer.id);
 
