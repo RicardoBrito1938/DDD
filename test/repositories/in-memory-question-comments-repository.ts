@@ -19,6 +19,16 @@ export class InMemoryQuestionCommentsRepository
 		return Promise.resolve(questionComment || null);
 	}
 
+	async findManyByQuestionId(
+		questionId: string,
+		params: { page: number },
+	): Promise<QuestionComment[]> {
+		const questionComments = this.items
+			.filter((item) => item.questionId.toString() === questionId)
+			.slice((params.page - 1) * 20, params.page * 20);
+		return Promise.resolve(questionComments);
+	}
+
 	async delete(questionComment: QuestionComment): Promise<void> {
 		this.items = this.items.filter((item) => item.id !== questionComment.id);
 		return Promise.resolve();
