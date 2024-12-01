@@ -1,14 +1,17 @@
-import { Question } from "@/domain/forum/enterprise/entities/question";
 import type { QuestionsRepository } from "../repositories/questions-repository";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { left, right, type Either } from "@/core/either";
+import { ResourceNotFoundError } from "./errors/resource-not-found-error";
+import { NotAllowedError } from "./errors/not-allowed-error";
 
 interface DeleteQuestionUseCaseRequest {
 	questionId: string;
 	authorId: string;
 }
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
-type DeleteQuestionUseCaseResponse = {};
+type DeleteQuestionUseCaseResponse = Either<
+	ResourceNotFoundError | NotAllowedError,
+	{}
+>;
 
 export class DeleteQuestionUseCase {
 	constructor(private questionsRepository: QuestionsRepository) {}
@@ -20,14 +23,14 @@ export class DeleteQuestionUseCase {
 		const question = await this.questionsRepository.findById(questionId);
 
 		if (!question) {
-			throw new Error("Question not found");
+			return left(new ResourceNotFoundError());
 		}
 
 		if (authorId !== question.authorId.toString()) {
-			throw new Error("You can only delete your own questions");
+			return left(new NotAllowedError());
 		}
 		await this.questionsRepository.delete(question);
 
-		return {};
+		return right({});
 	}
 }

@@ -30,11 +30,11 @@ describe("Fetch question comments", () => {
 			}),
 		);
 
-		const { questionComment } = await sut.execute({
+		const result = await sut.execute({
 			questionId: "question-1",
 			page: 1,
 		});
 
-		expect(questionComment.length).toBe(3);
+		expect(result?.value?.questionComment.length).toBe(3);
 	});
 });
