@@ -1,14 +1,12 @@
-import { Answer } from "@/domain/forum/enterprise/entities/answer";
 import type { AnswersRepository } from "../repositories/answers-repository";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import type { Either } from "@/core/either";
 
 interface DeleteAnswerUseCaseRequest {
 	answerId: string;
 	authorId: string;
 }
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
-type DeleteAnswerUseCaseResponse = {};
+type DeleteAnswerUseCaseResponse = Either<string, {}>;
 
 export class DeleteAnswerUseCase {
 	constructor(private answersRepository: AnswersRepository) {}
