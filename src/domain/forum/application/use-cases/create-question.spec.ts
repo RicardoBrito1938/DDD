@@ -23,6 +23,6 @@ describe("Create question", () => {
 		expect(inMemoryQuestionsRepository.items[0]).toEqual(
 			result.value?.question,
 		);
-		expect(result.value?.question.attachments).toHaveLength(2);
+		expect(result.value?.question.attachments.currentItems).toHaveLength(2);
 	});
 });
