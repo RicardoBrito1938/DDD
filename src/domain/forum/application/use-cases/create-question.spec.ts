@@ -15,6 +15,7 @@ describe("Create question", () => {
 			authorId: "1",
 			title: "Nova pergunta",
 			content: "Conteúdo da pergunta",
+			attachmentsIds: ["1", "2"],
 		});
 
 		expect(result.isRight()).toBeTruthy();
@@ -22,5 +23,6 @@ describe("Create question", () => {
 		expect(inMemoryQuestionsRepository.items[0]).toEqual(
 			result.value?.question,
 		);
+		expect(result.value?.question.attachments).toHaveLength(2);
 	});
 });
