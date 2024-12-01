@@ -1,8 +1,13 @@
+import type { AnswerAttachmentsRepository } from "@/domain/forum/application/repositories/answer-attachments-repository";
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import type { Answer } from "@/domain/forum/enterprise/entities/answer";
 
 export class InMemoryAnswersRepository implements AnswersRepository {
 	public items: Answer[] = [];
+
+	constructor(
+		private answerAttachmentsRepository: AnswerAttachmentsRepository,
+	) {}
 
 	create(answer: Answer): Promise<void> {
 		this.items.push(answer);
@@ -11,6 +16,8 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
 	async delete(answer: Answer): Promise<void> {
 		this.items = this.items.filter((item) => item.id !== answer.id);
+
+		this.answerAttachmentsRepository.deleteManyByAnswerId(answer.id.toString());
 		return Promise.resolve();
 	}
 
