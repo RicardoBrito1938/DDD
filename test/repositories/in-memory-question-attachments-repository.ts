@@ -12,4 +12,10 @@ export class InMemoryQuestionAttachmentsRepository
 		);
 		return questionAttachments;
 	}
+
+	async deleteManyByQuestionId(questionId: string) {
+		this.items = this.items.filter(
+			(item) => item.questionId.toString() !== questionId,
+		);
+	}
 }
