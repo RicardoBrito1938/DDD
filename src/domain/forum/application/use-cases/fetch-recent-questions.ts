@@ -1,13 +1,17 @@
 import type { Question } from "@/domain/forum/enterprise/entities/question";
 import type { QuestionsRepository } from "../repositories/questions-repository";
+import { right, type Either } from "@/core/either";
 
 interface FetchRecentQuestionsCaseRequest {
 	page: number;
 }
 
-interface FetchRecentQuestionsCaseResponse {
-	questions: Question[];
-}
+type FetchRecentQuestionsCaseResponse = Either<
+	null,
+	{
+		questions: Question[];
+	}
+>;
 
 export class FetchRecentQuestionsCase {
 	constructor(private questionsRepository: QuestionsRepository) {}
@@ -19,8 +23,6 @@ export class FetchRecentQuestionsCase {
 			page,
 		});
 
-		return {
-			questions,
-		};
+		return right({ questions });
 	}
 }
