@@ -4,7 +4,7 @@ import { EditAnswerUseCase } from "./edit-answer";
 
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { makeAnswer } from "test/factories/make-annswer";
-import { NotAllowedError } from "./errors/not-allowed-error";
+import { NotAllowedError } from "../../../../core/errors/errors/not-allowed-error";
 import { makeAnswerAttachment } from "test/factories/make-answer-attachments";
 
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
