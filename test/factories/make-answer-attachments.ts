@@ -2,7 +2,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import {
 	AnswerAttachment,
 	type AnswerAttachmentProps,
-} from "@/domain/forum/enterprise/entities/answer-attachement";
+} from "@/domain/forum/enterprise/entities/answer-attachment";
 
 export const makeAnswerAttachment = (
 	override: Partial<AnswerAttachmentProps> = {},

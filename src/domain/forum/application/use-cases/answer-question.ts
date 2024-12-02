@@ -3,7 +3,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import type { AnswersRepository } from "../repositories/answers-repository";
 import { right, type Either } from "@/core/either";
 import { AnswerAttachmentList } from "../../enterprise/entities/answer-attachment-list";
-import { AnswerAttachment } from "../../enterprise/entities/answer-attachement";
+import { AnswerAttachment } from "../../enterprise/entities/answer-attachment";
 
 interface AnswerQuestionUseCaseRequest {
 	instructorId: string;
